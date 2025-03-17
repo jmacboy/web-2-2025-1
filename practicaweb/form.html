@@ -13,6 +13,69 @@
     <title>Hola Mundo</title>
   </head>
   <body>
-    <h1>Esta es una pruebaaaa</h1>
+    <div class="container">
+      <div class="row mt-2">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Formulario get</div>
+
+              <form method="get" action="/receiveinfoget">
+                <div class="mt-2">
+                  <input
+                    type="text"
+                    name="firstName"
+                    class="form-control"
+                    placeholder="Ingrese su nombre"
+                  />
+                </div>
+                <div class="mt-2">
+                  <input
+                    type="text"
+                    name="lastName"
+                    class="form-control"
+                    placeholder="Ingrese su apellido"
+                  />
+                </div>
+                <div class="mt-2">
+                  <input type="submit" value="Enviar" class="btn btn-primary" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <div class="card-title">Formulario post</div>
+
+              <form method="post" action="/receiveinfopost">
+                <div class="mt-2">
+                  <input
+                    type="text"
+                    name="firstName"
+                    class="form-control"
+                    placeholder="Ingrese su nombre"
+                  />
+                </div>
+                <div class="mt-2">
+                  <input
+                    type="text"
+                    name="lastName"
+                    class="form-control"
+                    placeholder="Ingrese su apellido"
+                  />
+                </div>
+                <div class="mt-2">
+                  <input type="submit" value="Enviar" class="btn btn-primary" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,6 +1,12 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const app = express();
 const port = 3000;
+
+app.set("view engine", "ejs");
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(
   "/js/bootstrap",
@@ -17,10 +23,21 @@ app.use(
 app.use("/css", express.static(__dirname + "/css"));
 
 app.get("/", (req, res) => {
-  res.send("Hola mundo!");
+  const title = "Hola Mundo";
+  res.render("pages/index.ejs", { title });
 });
 app.get("/form", (req, res) => {
   res.sendFile(__dirname + "/form.html");
+});
+app.get("/receiveinfoget", (req, res) => {
+  const firstName = req.query.firstName;
+  const lastName = req.query.lastName;
+  res.send(`First name: ${firstName}, Last name: ${lastName}`);
+});
+app.post("/receiveinfopost", (req, res) => {
+  const firstName = req.body.firstName;
+  const lastName = req.body.lastName;
+  res.send(`First name: ${firstName}, Last name: ${lastName}`);
 });
 
 app.listen(port, () => {
