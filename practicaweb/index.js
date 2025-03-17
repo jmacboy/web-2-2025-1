@@ -1,8 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+
 const app = express();
 const port = 3000;
-
+require("./models/index");
 app.set("view engine", "ejs");
 
 // parse application/x-www-form-urlencoded
@@ -26,6 +27,10 @@ app.get("/", (req, res) => {
   const title = "Hola Mundo";
   res.render("pages/index.ejs", { title });
 });
+app.get("/prueba", (req, res) => {
+  res.render("pages/prueba.ejs", {  });
+});
+
 app.get("/form", (req, res) => {
   res.sendFile(__dirname + "/form.html");
 });
