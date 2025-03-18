@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const port = 3000;
-require("./models/");
+const db = require("./models/");
+
 app.set("view engine", "ejs");
 
 // parse application/x-www-form-urlencoded
@@ -28,7 +29,18 @@ app.get("/", (req, res) => {
   res.render("pages/index.ejs", { title });
 });
 app.get("/prueba", (req, res) => {
+  const persona = db.persona.create({
+    nombre: "Juan",
+    apellido: "Perez",
+    edad: 25,
+    ciudad: "Bogota",
+    fechaNacimiento: new Date("1996-05-12"),
+  });
   res.render("pages/prueba.ejs", {});
+});
+app.get("/personas", async (req, res) => {
+  const personas = await db.persona.findAll();
+  res.render("pages/list.ejs", { personas });
 });
 
 app.get("/form", (req, res) => {

@@ -1,0 +1,8 @@
+<%- include('../components/header.ejs') %>
+    <% personas.forEach(persona => { %>
+     <div>
+        <h1><%= persona.nombre %> <%=persona.apellido%></h1>
+        <p><%= persona.edad %></p>
+     </div>
+    <% }) %>
+<%- include('../components/footer.ejs') %>
