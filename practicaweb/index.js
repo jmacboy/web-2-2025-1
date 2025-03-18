@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 
 const app = express();
 const port = 3000;
-require("./models/index");
+require("./models/");
 app.set("view engine", "ejs");
 
 // parse application/x-www-form-urlencoded
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
   res.render("pages/index.ejs", { title });
 });
 app.get("/prueba", (req, res) => {
-  res.render("pages/prueba.ejs", {  });
+  res.render("pages/prueba.ejs", {});
 });
 
 app.get("/form", (req, res) => {

@@ -1,7 +1,6 @@
-const e = require("express");
 const { DataTypes } = require("sequelize");
 
-module.exports = function (sequelize, Sequelize) {
+module.exports = function (sequelize) {
     const Persona = sequelize.define(
         'Persona',
         {
