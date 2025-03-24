@@ -1,0 +1,44 @@
+<%- include('../../components/header.ejs') %>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>Formulario de personas</h3>
+                        </div>
+
+                        <form method="post" action="/personas">
+                            <div class="mt-2">
+                                <label>Nombre:</label>
+                                <input type="text" name="nombre" class="form-control" placeholder="Ingrese su nombre" />
+                            </div>
+                            <div class="mt-2">
+                                <label>Apellido:</label>
+                                <input type="text" name="apellido" class="form-control"
+                                    placeholder="Ingrese su apellido" />
+                            </div>
+                            <div class="mt-2">
+                                <label>Edad:</label>
+                                <input type="number" name="edad" class="form-control" placeholder="Ingrese su edad" />
+                            </div>
+                            <div class="mt-2">
+                                <label>Ciudad:</label>
+                                <input type="text" name="ciudad" class="form-control" placeholder="Ingrese su ciudad" />
+                            </div>
+                            <div class="mt-2">
+                                <label>Fecha de nacimiento:</label>
+                                <input type="date" name="fechaNacimiento" class="form-control"
+                                    placeholder="Ingrese su Fecha de Nacimiento" />
+                            </div>
+                            <div class="mt-2">
+                                <input type="submit" value="Enviar" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../components/footer.ejs') %>

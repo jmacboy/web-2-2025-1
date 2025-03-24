@@ -1,0 +1,52 @@
+<%- include('../../components/header.ejs') %>
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>Personas</h3>
+                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>Edad</th>
+                                    <th>Ciudad</th>
+                                    <th>Fecha de Nacimiento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <% personas.forEach(persona=> { %>
+                                    <tr>
+                                        <td>
+                                            <%=persona.id%>
+                                        </td>
+                                        <td>
+                                            <%= persona.nombre %>
+                                        </td>
+                                        <td>
+                                            <%= persona.apellido %>
+                                        </td>
+                                        <td>
+                                            <%= persona.edad %>
+                                        </td>
+                                        <td>
+                                            <%= persona.ciudad %>
+                                        </td>
+                                        <td>
+                                            <%= persona.fechaNacimiento %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../components/footer.ejs') %>
