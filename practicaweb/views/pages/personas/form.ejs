@@ -9,28 +9,31 @@
                             <h3>Formulario de personas</h3>
                         </div>
 
-                        <form method="post" action="/personas">
+                        <form method="post" action="">
                             <div class="mt-2">
-                                <label>Nombre:</label>
-                                <input type="text" name="nombre" class="form-control" placeholder="Ingrese su nombre" />
+                                <label for="nombre">Nombre:</label>
+                                <input id="nombre" type="text" name="nombre" class="form-control"
+                                    placeholder="Ingrese su nombre" value="<%= persona?.nombre %>" />
                             </div>
                             <div class="mt-2">
-                                <label>Apellido:</label>
-                                <input type="text" name="apellido" class="form-control"
-                                    placeholder="Ingrese su apellido" />
+                                <label for="apellido">Apellido:</label>
+                                <input id="apellido" type="text" name="apellido" class="form-control"
+                                    placeholder="Ingrese su apellido" value="<%= persona?.apellido %>" />
                             </div>
                             <div class="mt-2">
-                                <label>Edad:</label>
-                                <input type="number" name="edad" class="form-control" placeholder="Ingrese su edad" />
+                                <label for="edad">Edad:</label>
+                                <input id="edad" type="number" name="edad" class="form-control"
+                                    placeholder="Ingrese su edad" value="<%= persona?.edad %>" />
                             </div>
                             <div class="mt-2">
-                                <label>Ciudad:</label>
-                                <input type="text" name="ciudad" class="form-control" placeholder="Ingrese su ciudad" />
+                                <label for="ciudad">Ciudad:</label>
+                                <input id="ciudad" type="text" name="ciudad" class="form-control"
+                                    placeholder="Ingrese su ciudad" value="<%= persona?.ciudad %>" />
                             </div>
                             <div class="mt-2">
-                                <label>Fecha de nacimiento:</label>
-                                <input type="date" name="fechaNacimiento" class="form-control"
-                                    placeholder="Ingrese su Fecha de Nacimiento" />
+                                <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                                <input id="fechaNacimiento" type="date" name="fechaNacimiento" class="form-control"
+                                    value="<%= formattedDate %>" placeholder="Ingrese su Fecha de Nacimiento" />
                             </div>
                             <div class="mt-2">
                                 <input type="submit" value="Enviar" class="btn btn-primary" />

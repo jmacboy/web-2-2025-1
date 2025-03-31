@@ -16,6 +16,7 @@
                                     <th>Edad</th>
                                     <th>Ciudad</th>
                                     <th>Fecha de Nacimiento</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,6 +40,15 @@
                                         </td>
                                         <td>
                                             <%= persona.fechaNacimiento %>
+                                        </td>
+                                        <td>
+                                            <a href="/personas/<%= persona.id %>" class="btn btn-success">Editar</a>
+                                        </td>
+                                        <td>
+                                            <form method="post" action="/personas/<%=persona.id%>/delete"
+                                                onsubmit="return confirm('¿Está seguro de que desea eliminar esta persona?');">
+                                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <% }) %>
