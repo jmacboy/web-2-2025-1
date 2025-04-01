@@ -1,0 +1,44 @@
+<%- include('../../components/header.ejs') %>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>Formulario de contactos</h3>
+                        </div>
+
+                        <form method="post" action="">
+                            <div class="mt-2">
+                                <label for="tipo">Tipo:</label>
+                                <input id="tipo" type="text" name="tipo" class="form-control"
+                                    placeholder="Ingrese su tipo" value="<%= contacto?.tipo %>" />
+                            </div>
+                            <div class="mt-2">
+                                <label for="valor">Valor:</label>
+                                <input id="valor" type="text" name="valor" class="form-control"
+                                    placeholder="Ingrese su valor" value="<%= contacto?.valor %>" />
+                            </div>
+                            <div class="mt-2">
+                                <label for="personaId">Persona:</label>
+                                <select id="personaId" name="personaId" class="form-control">
+                                    <% personas.forEach(persona=> { %>
+                                        <option value="<%= persona.id %>" <%=contacto?.personaId==persona.id
+                                            ? 'selected' : '' %>>
+                                            <%= persona.nombre %>
+                                                <%= persona.apellido %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+                            <div class="mt-2">
+                                <input type="submit" value="Enviar" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../components/footer.ejs') %>

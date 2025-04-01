@@ -5,54 +5,42 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">
-                            <h3>Personas</h3>
+                            <h3>Contactos</h3>
                         </div>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Edad</th>
-                                    <th>Ciudad</th>
-                                    <th>Fecha de Nacimiento</th>
-                                    <th></th>
+                                    <th>Tipo</th>
+                                    <th>Valor</th>
+                                    <th>Persona</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
 
-                                <% personas.forEach(persona=> { %>
+                                <% contactos.forEach(contacto=> { %>
                                     <tr>
                                         <td>
-                                            <%=persona.id%>
+                                            <%=contacto.id%>
                                         </td>
                                         <td>
-                                            <%= persona.nombre %>
+                                            <%= contacto.tipo %>
                                         </td>
                                         <td>
-                                            <%= persona.apellido %>
+                                            <%= contacto.valor %>
                                         </td>
                                         <td>
-                                            <%= persona.edad %>
+                                            <%= contacto.persona.nombre %>
+                                                <%= contacto.persona.apellido %>
                                         </td>
                                         <td>
-                                            <%= persona.ciudad %>
+                                            <a href="/contactos/<%= contacto.id %>" class="btn btn-success">Editar</a>
                                         </td>
                                         <td>
-                                            <%= persona.fechaNacimiento %>
-                                        </td>
-                                        <td>
-                                            <a href="/personas/<%= persona.id %>" class="btn btn-success">Editar</a>
-                                        </td>
-                                        <td>
-                                            <a href="/personas/<%= persona.id %>/contactos" class="btn btn-primary">Ver
-                                                contactos</a>
-                                        </td>
-                                        <td>
-                                            <form method="post" action="/personas/<%=persona.id%>/delete"
-                                                onsubmit="return confirm('¿Está seguro de que desea eliminar esta persona?');">
+                                            <form method="post" action="/contactos/<%=contacto.id%>/delete"
+                                                onsubmit="return confirm('¿Está seguro de que desea eliminar este contacto?');">
                                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                                             </form>
                                         </td>
