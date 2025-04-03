@@ -13,8 +13,9 @@ formasContacto.belongsTo(persona, {
     as: "persona"
 });
 
-sequelize.sync();
 module.exports = {
     persona,
-    formasContacto
+    formasContacto,
+    sequelize,
+    Sequelize: sequelize.Sequelize
 };

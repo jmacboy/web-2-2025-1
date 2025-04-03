@@ -12,11 +12,17 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
 
 
-app.use("/css", express.static(__dirname + "/css"));
-app.use("/js", express.static(__dirname + "/js"));
+app.use(express.static('public'));
 
 
-require("./controllers")(app, db);
+db.sequelize.sync({
+  // force: true // drop tables and recreate
+}).then(() => {
+  console.log("db resync");
+});
+
+
+require("./routes")(app);
 
 
 app.listen(port, () => {
