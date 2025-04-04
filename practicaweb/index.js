@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 const express = require("express");
 const bodyParser = require("body-parser");
+const fileUpload = require('express-fileupload');
 
 const app = express();
 const port = 3000;
@@ -13,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 app.use(express.static('public'));
+app.use(fileUpload({
+  limits: { fileSize: 50 * 1024 * 1024 },
+}));
 
 
 db.sequelize.sync({

@@ -1,0 +1,30 @@
+<%- include('../../components/header.ejs') %>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>Formulario de foto de perfil</h3>
+                        </div>
+
+                        <form method="post" action="" enctype="multipart/form-data">
+                            <div>
+                                <img src="/images/profile/<%=persona.id%>.jpg" alt="" />
+                            </div>
+                            <div>
+
+                                <label for=" foto">Seleccione la foto de perfil</label>
+                                <input type="file" name="foto" class="form-control" accept="image/*" id="foto" />
+                            </div>
+                            <div class="mt-2">
+                                <input type="submit" value="Enviar" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../components/footer.ejs') %>

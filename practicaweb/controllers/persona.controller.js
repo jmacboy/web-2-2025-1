@@ -1,6 +1,6 @@
+/* eslint-disable no-undef */
 const { formatDate } = require("../utils/date.utils");
 const db = require("../models/");
-
 exports.getPersonaList = async (req, res) => {
     const personas = await db.persona.findAll();
     res.render("pages/personas/list.ejs", { personas });
@@ -57,3 +57,31 @@ exports.getContactosPersona = async (req, res) => {
     });
     res.render('pages/contactos/list.ejs', { contactos: contactos });
 }
+exports.getFormPerfil = async (req, res) => {
+    const { id } = req.params;
+    const persona = await db.persona.findByPk(id);
+    if (!persona) return res.redirect('/personas');
+    res.render('pages/personas/perfil.ejs', { persona });
+}
+exports.postFormPerfil = async (req, res) => {
+
+    const id = req.params.id;
+    const persona = await db.persona.findByPk(id);
+    if (!req.files?.foto) {
+        res.render('personas/perfil.ejs', { errors: { message: 'Debe seleccionar una imagen' }, persona });
+        return;
+    }
+    const image = req.files.foto;
+    // eslint-disable-next-line no-undef
+    const path = __dirname + '/../public/images/profile/' + persona.id + '.jpg';
+
+    image.mv(path, function (err) {
+        if (err) {
+            res.render('personas/perfil.ejs', { errors: { message: 'Error al subir la imagen' }, persona });
+            console.log(err);
+            return;
+        }
+        res.redirect('/personas');
+    });
+
+};
