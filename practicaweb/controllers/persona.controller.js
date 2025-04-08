@@ -6,17 +6,17 @@ exports.getPersonaList = async (req, res) => {
     res.render("pages/personas/list.ejs", { personas });
 };
 exports.getPersonaCreate = (req, res) => {
-    res.render('pages/personas/form.ejs', { persona: null, formattedDate: null });
+    res.render('pages/personas/form.ejs', { persona: null, formattedDate: null, errors: null });
 };
 exports.postPersonaCreate = async (req, res) => {
-    const { nombre, apellido, edad, ciudad, fechaNacimiento } = req.body;
-    await db.persona.create({
-        nombre,
-        apellido,
-        edad,
-        ciudad,
-        fechaNacimiento
-    });
+    const { errors, persona } = validatePersonaForm(req);
+    if (errors) {
+
+        res.render('pages/personas/form.ejs', { errors, persona, formattedDate: persona.fechaNacimiento });
+        return;
+    }
+
+    await db.persona.create(persona);
     res.redirect('/personas');
 };
 exports.getPersonaUpdate = async (req, res) => {
@@ -85,3 +85,19 @@ exports.postFormPerfil = async (req, res) => {
     });
 
 };
+const validatePersonaForm = (req) => {
+    const { nombre, apellido, edad, ciudad, fechaNacimiento } = req.body;
+    const errors = {};
+
+    if (!nombre) errors.nombre = "El nombre es requerido";
+    if (!apellido) errors.apellido = "El apellido es requerido";
+    if (!edad) errors.edad = "La edad es requerida";
+    if (!ciudad) errors.ciudad = "La ciudad es requerida";
+    if (!fechaNacimiento) errors.fechaNacimiento = "La fecha de nacimiento es requerida";
+    if (Object.keys(errors).length > 0) {
+        errors.message = "Todos los campos son requeridos";
+        return { errors, persona: req.body };
+    }
+
+    return { errors: null, persona: req.body };
+}

@@ -2,7 +2,7 @@
 
 exports.index = (req, res) => {
     const title = "Hola Mundo";
-    res.render("pages/index.ejs", { title });
+    res.render("pages/index.ejs", { title, usuario: null });
 };
 exports.prueba = (req, res) => {
     const persona = db.persona.create({

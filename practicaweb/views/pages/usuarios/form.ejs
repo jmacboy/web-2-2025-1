@@ -1,0 +1,36 @@
+<%- include('../../components/header.ejs') %>
+
+    <div class="container">
+        <div class="row mt-2">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h3>Formulario de usuarios</h3>
+                        </div>
+
+                        <form method="post" action="">
+                            <div class="mt-2">
+                                <label for="email">Email:</label>
+                                <input id="email" type="email" name="email" class="form-control"
+                                    placeholder="Ingrese su email" value="<%= usuario?.email %>" />
+                            </div>
+                            <% if (nuevoUsuario) { %>
+
+                                <div class="mt-2">
+                                    <label for="password">Password:</label>
+                                    <input id="password" type="password" name="password" class="form-control"
+                                        placeholder="Ingrese su password" value="<%= usuario?.password %>" />
+                                </div>
+
+                                <% } %>
+                                    <div class="mt-2">
+                                        <input type="submit" value="Enviar" class="btn btn-primary" />
+                                    </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('../../components/footer.ejs') %>

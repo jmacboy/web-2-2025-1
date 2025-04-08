@@ -2,7 +2,7 @@ const { sequelize } = require("../config/db.config");
 
 const persona = require("./persona")(sequelize);
 const formasContacto = require("./formasContacto")(sequelize);
-
+const usuario = require("./usuario")(sequelize);
 persona.hasMany(formasContacto, {
     foreignKey: "personaId",
     sourceKey: "id",
@@ -16,6 +16,7 @@ formasContacto.belongsTo(persona, {
 module.exports = {
     persona,
     formasContacto,
+    usuario,
     sequelize,
     Sequelize: sequelize.Sequelize
 };

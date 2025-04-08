@@ -10,17 +10,27 @@
                         </div>
 
                         <form method="post" action="" enctype="multipart/form-data">
-                            <div>
-                                <img src="/images/profile/<%=persona.id%>.jpg" alt="" />
-                            </div>
-                            <div>
-
-                                <label for=" foto">Seleccione la foto de perfil</label>
-                                <input type="file" name="foto" class="form-control" accept="image/*" id="foto" />
-                            </div>
-                            <div class="mt-2">
-                                <input type="submit" value="Enviar" class="btn btn-primary" />
-                            </div>
+                            <% if (errors) { %>
+                                <div class="alert alert-warning">
+                                    <%= errors.message%>
+                                </div>
+                                <% } %>
+                                    <div>
+                                        <img src="/images/profile/<%=persona.id%>.jpg" alt="" />
+                                    </div>
+                                    <div>
+                                        <label for=" foto">Seleccione la foto de perfil</label>
+                                        <input type="file" name="foto" class="form-control" accept="image/*"
+                                            id="foto" />
+                                    </div>
+                                    <%if (errors?.foto) {%>
+                                        <div class="error-label">
+                                            Por favor ingrese un archivo válido
+                                        </div>
+                                        <% } %>
+                                            <div class="mt-2">
+                                                <input type="submit" value="Enviar" class="btn btn-primary" />
+                                            </div>
                         </form>
                     </div>
                 </div>

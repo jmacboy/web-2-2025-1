@@ -10,34 +10,65 @@
                         </div>
 
                         <form method="post" action="">
-                            <div class="mt-2">
-                                <label for="nombre">Nombre:</label>
-                                <input id="nombre" type="text" name="nombre" class="form-control"
-                                    placeholder="Ingrese su nombre" value="<%= persona?.nombre %>" />
-                            </div>
-                            <div class="mt-2">
-                                <label for="apellido">Apellido:</label>
-                                <input id="apellido" type="text" name="apellido" class="form-control"
-                                    placeholder="Ingrese su apellido" value="<%= persona?.apellido %>" />
-                            </div>
-                            <div class="mt-2">
-                                <label for="edad">Edad:</label>
-                                <input id="edad" type="number" name="edad" class="form-control"
-                                    placeholder="Ingrese su edad" value="<%= persona?.edad %>" />
-                            </div>
-                            <div class="mt-2">
-                                <label for="ciudad">Ciudad:</label>
-                                <input id="ciudad" type="text" name="ciudad" class="form-control"
-                                    placeholder="Ingrese su ciudad" value="<%= persona?.ciudad %>" />
-                            </div>
-                            <div class="mt-2">
-                                <label for="fechaNacimiento">Fecha de nacimiento:</label>
-                                <input id="fechaNacimiento" type="date" name="fechaNacimiento" class="form-control"
-                                    value="<%= formattedDate %>" placeholder="Ingrese su Fecha de Nacimiento" />
-                            </div>
-                            <div class="mt-2">
-                                <input type="submit" value="Enviar" class="btn btn-primary" />
-                            </div>
+                            <% if (errors) { %>
+                                <div class="alert alert-warning">
+                                    <%= errors.message%>
+                                </div>
+                                <% } %>
+                                    <div class="mt-2">
+                                        <label for="nombre">Nombre:</label>
+                                        <input id="nombre" type="text" name="nombre" class="form-control"
+                                            placeholder="Ingrese su nombre" value="<%= persona?.nombre %>" />
+                                        <%if (errors?.nombre) {%>
+                                            <div class="error-label">
+                                                Por favor ingrese un nombre
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="mt-2">
+                                        <label for="apellido">Apellido:</label>
+                                        <input id="apellido" type="text" name="apellido" class="form-control"
+                                            placeholder="Ingrese su apellido" value="<%= persona?.apellido %>" />
+                                        <%if (errors?.apellido) {%>
+                                            <div class="error-label">
+                                                Por favor ingrese un apellido
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="mt-2">
+                                        <label for="edad">Edad:</label>
+                                        <input id="edad" type="number" name="edad" class="form-control"
+                                            placeholder="Ingrese su edad" value="<%= persona?.edad %>" />
+                                        <%if (errors?.edad) {%>
+                                            <div class="error-label">
+                                                Por favor ingrese un edad
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="mt-2">
+                                        <label for="ciudad">Ciudad:</label>
+                                        <input id="ciudad" type="text" name="ciudad" class="form-control"
+                                            placeholder="Ingrese su ciudad" value="<%= persona?.ciudad %>" />
+                                        <%if (errors?.ciudad) {%>
+                                            <div class="error-label">
+                                                Por favor ingrese un ciudad
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="mt-2">
+                                        <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                                        <input id="fechaNacimiento" type="date" name="fechaNacimiento"
+                                            class="form-control" value="<%= formattedDate %>"
+                                            placeholder="Ingrese su Fecha de Nacimiento" />
+                                        <%if (errors?.fechaNacimiento) {%>
+                                            <div class="error-label">
+                                                Por favor ingrese una fecha de nacimiento
+                                            </div>
+                                            <% } %>
+                                    </div>
+                                    <div class="mt-2">
+                                        <input type="submit" value="Enviar" class="btn btn-primary" />
+                                    </div>
                         </form>
                     </div>
                 </div>
