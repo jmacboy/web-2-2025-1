@@ -101,3 +101,14 @@ const validatePersonaForm = (req) => {
 
     return { errors: null, persona: req.body };
 }
+exports.getPersonaSearch = async (req, res) => {
+    const { q } = req.query;
+    const personas = await db.persona.findAll({
+        where: {
+            nombre: {
+                [db.Sequelize.Op.like]: `%${q}%`
+            }
+        }
+    });
+    res.send({ personas });
+}

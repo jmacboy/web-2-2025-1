@@ -7,6 +7,7 @@ module.exports = app => {
     router.get("/", requireUser, controller.getPersonaList);
     router.get("/create", requireUser, controller.getPersonaCreate);
     router.post("/create", requireUser, controller.postPersonaCreate);
+    router.get("/search", controller.getPersonaSearch);
     router.get("/:id", requireUser, controller.getPersonaUpdate);
     router.post("/:id", requireUser, controller.postPersonaUpdate);
     router.post("/:id/delete", requireUser, controller.deletePersona);

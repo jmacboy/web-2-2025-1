@@ -6,3 +6,8 @@
     max-width: 100px;
     max-height: 100px;
 }
+#searchResults{
+    position: absolute;
+    top: 46px;
+    padding: 10px;
+}
