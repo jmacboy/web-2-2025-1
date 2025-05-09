@@ -6,7 +6,17 @@ import { Link } from "react-router";
 import moment from "moment";
 
 const PersonaList = () => {
+    //#region state variables
     const [personaList, setPersonaList] = useState([]);
+    //#endregion
+
+    //#region useEffect
+    useEffect(() => {
+        fetchPersonaList();
+    }, [])
+    //#endregion
+
+    //#region functions
     const fetchPersonaList = () => {
         axios.get('http://localhost:3000/personas')
             .then((res) => {
@@ -16,9 +26,7 @@ const PersonaList = () => {
                 console.log(err);
             });
     };
-    useEffect(() => {
-        fetchPersonaList();
-    }, [])
+
     const eliminarPersona = (id) => {
         const confirmacion = window.confirm("¿Está seguro de que desea eliminar esta persona?");
         if (!confirmacion) return;
@@ -30,6 +38,7 @@ const PersonaList = () => {
                 console.log(err);
             });
     }
+    //#endregion
     return (
         <>
             <Menu />

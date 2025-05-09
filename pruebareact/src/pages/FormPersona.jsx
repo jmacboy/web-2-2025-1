@@ -15,22 +15,24 @@ const FormPersona = () => {
     const [ciudad, setCiudad] = useState('')
     useEffect(() => {
         if (!id) return;
+        const fetchPersonaInfo = () => {
+            axios.get(`http://localhost:3000/personas/${id}`)
+                .then((res) => {
+                    const persona = res.data;
+                    console.log(res.data);
+                    setNombre(persona.nombre);
+                    setApellido(persona.apellido);
+                    setEdad(persona.edad);
+                    setCiudad(persona.ciudad);
+                    setFechaNacimiento(moment(persona.fechaNacimiento).format('YYYY-MM-DD'));
+                }).catch((err) => {
+                    console.log(err);
+                });
+        }
+
         fetchPersonaInfo();
     }, [id])
-    const fetchPersonaInfo = () => {
-        axios.get(`http://localhost:3000/personas/${id}`)
-            .then((res) => {
-                const persona = res.data;
-                console.log(res.data);
-                setNombre(persona.nombre);
-                setApellido(persona.apellido);
-                setEdad(persona.edad);
-                setCiudad(persona.ciudad);
-                setFechaNacimiento(moment(persona.fechaNacimiento).format('YYYY-MM-DD'));
-            }).catch((err) => {
-                console.log(err);
-            });
-    }
+
     const onFormSubmit = (e) => {
         e.preventDefault();
 
