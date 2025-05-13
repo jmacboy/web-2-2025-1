@@ -4,8 +4,11 @@ import { Button, Card, Col, Container, Row, Table } from "react-bootstrap"
 import Menu from "../components/Menu";
 import { Link } from "react-router";
 import moment from "moment";
+import { LOCAL_STORAGE_TOKEN } from "../utils/CONSTANTS";
+import { useAuth } from "../../hooks/useAuth";
 
 const PersonaList = () => {
+    useAuth();
     //#region state variables
     const [personaList, setPersonaList] = useState([]);
     //#endregion
@@ -18,7 +21,11 @@ const PersonaList = () => {
 
     //#region functions
     const fetchPersonaList = () => {
-        axios.get('http://localhost:3000/personas')
+        axios.get('http://localhost:3000/personas', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(LOCAL_STORAGE_TOKEN)}`
+            }
+        })
             .then((res) => {
                 console.log(res.data);
                 setPersonaList(res.data);

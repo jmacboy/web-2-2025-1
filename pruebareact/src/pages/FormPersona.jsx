@@ -4,8 +4,12 @@ import { Button, Card, Col, Container, Form, FormControl, Row } from "react-boot
 import Menu from "../components/Menu";
 import { useNavigate, useParams } from "react-router";
 import moment from "moment";
+import { useAuth } from "../../hooks/useAuth";
+import { LOCAL_STORAGE_TOKEN } from "../utils/CONSTANTS";
 
 const FormPersona = () => {
+    useAuth();
+
     const { id } = useParams();
     const navigate = useNavigate();
     const [nombre, setNombre] = useState('');
@@ -16,7 +20,11 @@ const FormPersona = () => {
     useEffect(() => {
         if (!id) return;
         const fetchPersonaInfo = () => {
-            axios.get(`http://localhost:3000/personas/${id}`)
+            axios.get(`http://localhost:3000/personas/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem(LOCAL_STORAGE_TOKEN)}`
+                }
+            })
                 .then((res) => {
                     const persona = res.data;
                     console.log(res.data);
@@ -51,7 +59,11 @@ const FormPersona = () => {
         }
     }
     const sendEditPersona = (persona) => {
-        axios.put(`http://localhost:3000/personas/${id}`, persona)
+        axios.put(`http://localhost:3000/personas/${id}`, persona, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(LOCAL_STORAGE_TOKEN)}`
+            }
+        })
             .then((res) => {
                 console.log(res.data);
                 navigate('/');
@@ -60,7 +72,11 @@ const FormPersona = () => {
             });
     }
     const sendCreatePersona = (persona) => {
-        axios.post(`http://localhost:3000/personas`, persona)
+        axios.post(`http://localhost:3000/personas`, persona, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem(LOCAL_STORAGE_TOKEN)}`
+            }
+        })
             .then((res) => {
                 console.log(res.data);
                 navigate('/');
