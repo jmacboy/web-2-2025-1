@@ -8,7 +8,7 @@ import { LOCAL_STORAGE_TOKEN } from "../utils/CONSTANTS";
 import { useAuth } from "../../hooks/useAuth";
 
 const PersonaList = () => {
-    useAuth();
+    const { getAuthUser } = useAuth(true);
     //#region state variables
     const [personaList, setPersonaList] = useState([]);
     //#endregion
@@ -21,9 +21,11 @@ const PersonaList = () => {
 
     //#region functions
     const fetchPersonaList = () => {
+        const { token } = getAuthUser();
+
         axios.get('http://localhost:3000/personas', {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem(LOCAL_STORAGE_TOKEN)}`
+                Authorization: `Bearer ${token}`
             }
         })
             .then((res) => {

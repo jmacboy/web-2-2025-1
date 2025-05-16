@@ -2,20 +2,20 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link, NavLink, useNavigate } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import { LOCAL_STORAGE_EMAIL, LOCAL_STORAGE_TOKEN } from '../utils/CONSTANTS';
+import { useAuth } from '../../hooks/useAuth';
 
 const Menu = () => {
-    const navigate = useNavigate();
+    const { logout, getAuthUser } = useAuth();
+
     const onCerrarSesionClick = (e) => {
         e.preventDefault();
         const confirmacion = window.confirm("¿Está seguro de que desea cerrar sesión?");
         if (!confirmacion) return;
-        localStorage.removeItem(LOCAL_STORAGE_TOKEN);
-        navigate('/login');
+        logout();
     }
-    const token = localStorage.getItem(LOCAL_STORAGE_TOKEN);
-    const email = localStorage.getItem(LOCAL_STORAGE_EMAIL);
+    const { token, email } = getAuthUser();
     return (<Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary">
         <Container>
             <Navbar.Brand href="/">Proyecto</Navbar.Brand>
