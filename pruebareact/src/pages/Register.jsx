@@ -9,9 +9,12 @@ const Register = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('')
+    const [nombre, setNombre] = useState('')
+    const [apellidos, setApellidos] = useState('')
+    const [telefono, setTelefono] = useState('')
     const onFormSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:3000/auth/register', { email, password })
+        axios.post('http://localhost:3000/auth/register', { email, password, nombre, apellidos, telefono })
             .then((res) => {
                 console.log(res.data);
 
@@ -47,6 +50,18 @@ const Register = () => {
                                         <div>
                                             <label>Contraseña</label>
                                             <FormControl required="true" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                                        </div>
+                                        <div>
+                                            <label>Nombres</label>
+                                            <FormControl required="true" type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} />
+                                        </div>
+                                        <div>
+                                            <label>Apellidos</label>
+                                            <FormControl required="true" type="text" value={apellidos} onChange={(e) => setApellidos(e.target.value)} />
+                                        </div>
+                                        <div>
+                                            <label>Teléfono</label>
+                                            <FormControl required="true" type="text" value={telefono} onChange={(e) => setTelefono(e.target.value)} />
                                         </div>
                                         <div className="mt-2">
                                             <Button variant="primary" type="submit" >Registro</Button>

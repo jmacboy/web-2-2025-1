@@ -54,14 +54,31 @@ exports.register = async (req, res) => {
         const usuario = await db.usuario.create({
             email: email,
             password: hashedPassword,
+            nombre: req.body.nombre,
+            apellidos: req.body.apellidos,
+            telefono: req.body.telefono,
         });
         res.send({
             id: usuario.id,
             email: usuario.email,
+            nombre: usuario.nombre,
+            apellidos: usuario.apellidos,
+            telefono: usuario.telefono,
         });
     } catch (error) {
         console.error("Error creating user:", error);
         return res.status(500).send({ message: "Error al crear usuario" });
     }
 
+}
+exports.me = async (req, res) => {
+    const usuario = res.locals.usuario;
+
+    res.send({
+        id: usuario.id,
+        email: usuario.email,
+        nombre: usuario.nombre,
+        apellidos: usuario.apellidos,
+        telefono: usuario.telefono,
+    });
 }

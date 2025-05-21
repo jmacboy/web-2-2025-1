@@ -12,6 +12,18 @@ module.exports = function (sequelize) {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
+            nombre: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            apellidos: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
+            telefono: {
+                type: DataTypes.STRING,
+                allowNull: false,
+            },
         },
     );
     return Usuario;
