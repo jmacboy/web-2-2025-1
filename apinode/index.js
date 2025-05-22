@@ -2,14 +2,14 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const fileUpload = require('express-fileupload');
 var cors = require('cors')
-
+require('dotenv').config()
 const app = express();
 const port = 3000;
 const db = require("./models/");
 
 //cors
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    origin: [process.env.FRONTEND_BASE_URL, 'http://127.0.0.1:5173'],
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }))
 // parse application/x-www-form-urlencoded
