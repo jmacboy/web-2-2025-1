@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from "@nestjs/common";
+import { Body, Controller, Delete, Get, InternalServerErrorException, NotFoundException, Param, Patch, Post, Put } from "@nestjs/common";
 import { PersonaService } from "./persona.service";
 import { PersonaInsertDto } from "./dtos/persona-insert.dto";
+import { PersonaUpdateDto } from "./dtos/persona-partialupdate.dto";
 
 @Controller("personas")
 export class PersonaController {
@@ -15,19 +16,38 @@ export class PersonaController {
         return this.personaService.create(createPersonaDto);
     }
     @Get(":id")
-    getOne(@Param("id") id: string) {
-        return "Get persona con id " + id;
+    async getOne(@Param("id") id: number) {
+        const persona = await this.personaService.findById(id);
+        if (!persona) {
+            throw new NotFoundException();
+        }
+        return this.personaService.findById(id);
     }
     @Put(":id")
-    update(@Param("id") id: number) {
-        return "Update persona con id " + id;
+    async update(@Param("id") id: number, @Body() personaDto: PersonaInsertDto) {
+        const persona = await this.personaService.findById(id);
+        if (!persona) {
+            throw new NotFoundException();
+        }
+        return this.personaService.update(personaDto, id);
     }
     @Patch(":id")
-    partialUpdate(@Param("id") id: number) {
-        return "Partial update persona con id " + id;
+    async partialUpdate(@Param("id") id: number, @Body() personaDto: PersonaUpdateDto) {
+        const persona = await this.personaService.findById(id);
+        if (!persona) {
+            throw new NotFoundException();
+        }
+        return this.personaService.update(personaDto, id);
     }
     @Delete(":id")
-    delete(@Param("id") id: number) {
-        return "Delete one persona con id " + id;
+    async delete(@Param("id") idPersona: number) {
+        const persona = await this.personaService.findById(idPersona);
+        if (!persona) {
+            throw new NotFoundException();
+        }
+        if (await this.personaService.delete(idPersona)) {
+            return { message: "Persona deleted successfully" };
+        }
+        throw new InternalServerErrorException("Error deleting persona");
     }
 }
