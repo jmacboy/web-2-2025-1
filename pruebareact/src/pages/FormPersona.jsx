@@ -34,6 +34,10 @@ const FormPersona = () => {
                     setCiudad(persona.ciudad);
                     setFechaNacimiento(moment(persona.fechaNacimiento).format('YYYY-MM-DD'));
                 }).catch((err) => {
+                    if (err.response.status === 401) {
+                        navigate('/login');
+                        return;
+                    }
                     console.log(err);
                 });
         }
@@ -47,7 +51,7 @@ const FormPersona = () => {
         const persona = {
             nombre,
             apellido,
-            edad,
+            edad: parseInt(edad),
             ciudad,
             fechaNacimiento
         }
@@ -69,6 +73,10 @@ const FormPersona = () => {
                 console.log(res.data);
                 navigate('/');
             }).catch((err) => {
+                if (err.response.status === 401) {
+                    navigate('/login');
+                    return;
+                }
                 console.log(err);
             });
     }
@@ -83,6 +91,10 @@ const FormPersona = () => {
                 console.log(res.data);
                 navigate('/');
             }).catch((err) => {
+                if (err.response.status === 401) {
+                    navigate('/login');
+                    return;
+                }
                 console.log(err);
             });
     }

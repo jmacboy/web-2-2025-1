@@ -2,12 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row, Table } from "react-bootstrap"
 import Menu from "../components/Menu";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import moment from "moment";
 import { LOCAL_STORAGE_TOKEN } from "../utils/CONSTANTS";
 import { useAuth } from "../../hooks/useAuth";
 
 const PersonaList = () => {
+    const navigate = useNavigate();
     const { getAuthUser } = useAuth(true);
     //#region state variables
     const [personaList, setPersonaList] = useState([]);
@@ -32,6 +33,10 @@ const PersonaList = () => {
                 console.log(res.data);
                 setPersonaList(res.data);
             }).catch((err) => {
+                if (err.response.status === 401) {
+                    navigate('/login');
+                    return;
+                }
                 console.log(err);
             });
     };

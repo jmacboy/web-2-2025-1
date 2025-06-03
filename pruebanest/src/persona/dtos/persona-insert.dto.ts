@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsISO8601, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class PersonaInsertDto {
     @IsNotEmpty()
@@ -10,4 +10,10 @@ export class PersonaInsertDto {
     @IsNotEmpty()
     @IsNumber()
     readonly edad: number;
+    @IsNotEmpty()
+    @IsISO8601()
+    readonly fechaNacimiento: string;
+    @IsNotEmpty()
+    @IsString()
+    readonly ciudad: string;
 }

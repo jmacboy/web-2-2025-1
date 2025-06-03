@@ -16,7 +16,7 @@ const Login = () => {
         axios.post('http://localhost:3000/auth/login', { email, password })
             .then((res) => {
                 console.log(res.data);
-                const token = res.data.token;
+                const token = res.data.access_token;
                 loginUser(token, email);
                 navigate('/');
             }).catch((err) => {

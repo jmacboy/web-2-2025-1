@@ -1,4 +1,4 @@
-import { IsNumber, IsOptional, IsString } from "class-validator";
+import { IsISO8601, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class PersonaUpdateDto {
     @IsOptional()
@@ -10,4 +10,10 @@ export class PersonaUpdateDto {
     @IsOptional()
     @IsNumber()
     readonly edad: number;
+    @IsOptional()
+    @IsISO8601()
+    readonly fechaNacimiento: string;
+    @IsOptional()
+    @IsString()
+    readonly ciudad: string;
 }

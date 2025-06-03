@@ -35,7 +35,7 @@ const Menu = () => {
                         </>
                     }
                     {token ?
-                        (user && <NavDropdown title={user.nombre + " " + user.apellidos} id="user-dropdown">
+                        (user && <NavDropdown title={user.fullName} id="user-dropdown">
                             <Link className='dropdown-item' onClick={onCerrarSesionClick}>Cerrar Sesión</Link>
                         </NavDropdown>)
                         :

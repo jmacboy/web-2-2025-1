@@ -25,6 +25,10 @@ export const useAuth = (shouldRedirect) => {
             .then((res) => {
                 setUserInfo(res.data);
             }).catch((err) => {
+                if (err.response.status === 401) {
+                    logout()
+                    return;
+                }
                 console.log(err);
             });
     }
