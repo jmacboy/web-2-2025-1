@@ -6,15 +6,26 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { promisify } from "util";
 import { unlink } from "fs";
 import { AuthGuard } from "../auth/auth.guard";
+import { ApiBearerAuth, ApiResponse, ApiSecurity, ApiUnauthorizedResponse } from "@nestjs/swagger";
 
 const unlinkAsync = promisify(unlink);
 
+@ApiSecurity("Bearer")
+@ApiBearerAuth()
 @Controller("personas")
 export class PersonaController {
     constructor(private personaService: PersonaService) {}
 
     @UseGuards(AuthGuard)
     @Get("")
+    @ApiResponse({
+        status: 200,
+        description: "Returns a list of all personas",
+        type: [PersonaInsertDto],
+    })
+    @ApiUnauthorizedResponse({
+        description: "Unauthorized",
+    })
     getAll() {
         return this.personaService.findAll();
     }
